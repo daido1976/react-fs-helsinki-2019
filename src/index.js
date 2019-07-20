@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import ReactDOM from "react-dom";
-import Counter from "./Counter";
+import Counter from "./part1/Counter";
 
 const App = () => {
   return (
