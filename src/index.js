@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
-const Display = ({ counter }) => {
-  return <div>{counter}</div>;
-};
+// eslint-disable-next-line react/prop-types
+const Display = ({ counter }) => <div>{counter}</div>;
 
 const App = () => {
   const [counter, setCounter] = useState(0);
