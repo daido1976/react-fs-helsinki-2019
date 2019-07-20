@@ -1,8 +1,10 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
-// eslint-disable-next-line react/prop-types
 const Display = ({ counter }) => <div>{counter}</div>;
+
+const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>;
 
 const App = () => {
   const [counter, setCounter] = useState(0);
@@ -12,8 +14,9 @@ const App = () => {
   return (
     <div>
       <Display counter={counter} />
-      <button onClick={setToValue(counter + 1)}>plus</button>
-      <button onClick={setToValue(0)}>zero</button>
+      <Button onClick={setToValue(counter + 1)} text="+" />
+      <Button onClick={setToValue(counter - 1)} text="-" />
+      <Button onClick={setToValue(0)} text="C" />
     </div>
   );
 };
