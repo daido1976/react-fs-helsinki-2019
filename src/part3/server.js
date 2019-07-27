@@ -1,5 +1,8 @@
 const express = require("express");
 const app = express();
+const bodyParser = require("body-parser");
+
+app.use(bodyParser.json());
 
 let notes = [
   {
@@ -38,6 +41,17 @@ app.get("/notes/:id", (req, res) => {
 
 // https://stackoverflow.com/questions/35408729/express-js-prevent-get-favicon-ico
 app.get("/favicon.ico", (req, res) => res.status(204));
+
+app.post("/notes", (req, res) => {
+  const maxId = notes.length > 0 ? Math.max(...notes.map(n => n.id)) : 0;
+
+  const note = req.body;
+  note.id = maxId + 1;
+
+  notes = notes.concat(note);
+
+  res.json(note);
+});
 
 const PORT = 3001;
 app.listen(PORT, () => {
