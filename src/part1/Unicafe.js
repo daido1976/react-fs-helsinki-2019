@@ -8,11 +8,15 @@ const Statistics = ({ good, neutral, bad, total, average }) => {
     return (
       <div>
         <h2>結果</h2>
-        <Statistic text="いいね！" value={good} />
-        <Statistic text="ふつう" value={neutral} />
-        <Statistic text="イマイチ…" value={bad} />
-        <Statistic text="合計" value={total} />
-        <Statistic text="いいね率" value={average + "%"} />
+        <table>
+          <tbody>
+            <Statistic text="いいね！" value={good} />
+            <Statistic text="ふつう" value={neutral} />
+            <Statistic text="イマイチ…" value={bad} />
+            <Statistic text="合計" value={total} />
+            <Statistic text="いいね率" value={average + "%"} />
+          </tbody>
+        </table>
       </div>
     );
   } else {
@@ -27,9 +31,10 @@ const Statistics = ({ good, neutral, bad, total, average }) => {
 
 const Statistic = ({ text, value }) => {
   return (
-    <div>
-      {text} {value}
-    </div>
+    <tr>
+      <td>{text}</td>
+      <td>{value}</td>
+    </tr>
   );
 };
 
