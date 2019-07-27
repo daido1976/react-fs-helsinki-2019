@@ -30,6 +30,9 @@ app.get("/notes", (req, res) => {
   res.json(notes);
 });
 
+// https://stackoverflow.com/questions/35408729/express-js-prevent-get-favicon-ico
+app.get("/favicon.ico", (req, res) => res.status(204));
+
 const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
