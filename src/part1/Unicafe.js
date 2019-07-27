@@ -3,15 +3,15 @@ import React, { useState } from "react";
 
 const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>;
 
-const Statistics = props => {
+const Statistics = ({ good, neutral, bad, total, average }) => {
   return (
     <div>
       <h2>結果</h2>
-      <div>いいね！ {props.good}</div>
-      <div>ふつう {props.neutral}</div>
-      <div>イマイチ… {props.bad}</div>
-      <div>合計 {props.total}</div>
-      <div>いいね率 {props.average}%</div>
+      <div>いいね！ {good}</div>
+      <div>ふつう {neutral}</div>
+      <div>イマイチ… {bad}</div>
+      <div>合計 {total}</div>
+      <div>いいね率 {average}%</div>
     </div>
   );
 };
