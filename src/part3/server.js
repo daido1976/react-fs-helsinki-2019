@@ -7,6 +7,10 @@ app.use(bodyParser.json());
 let notes = [];
 
 // get methods
+app.get("/notes", (_request, response) => {
+  response.json(notes);
+});
+
 app.get("/notes/:id", (request, response) => {
   const id = parseInt(request.params.id);
   const note = notes.find(note => note.id === id);
