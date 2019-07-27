@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import ReactDOM from "react-dom";
-import Counter from "./part1/Counter";
+import Unicafe from "./part1/Unicafe";
 
 const App = () => {
   return (
     <div>
-      <Counter />
+      <Unicafe />
     </div>
   );
 };
