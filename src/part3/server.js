@@ -29,7 +29,11 @@ app.get("/", (req, res) => {
 app.get("/notes/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const note = notes.find(note => note.id === id);
-  res.json(note);
+  if (note) {
+    res.json(note);
+  } else {
+    res.status(404).end();
+  }
 });
 
 // https://stackoverflow.com/questions/35408729/express-js-prevent-get-favicon-ico
