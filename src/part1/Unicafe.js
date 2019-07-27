@@ -10,8 +10,8 @@ const Statistics = props => {
       <div>いいね！ {props.good}</div>
       <div>ふつう {props.neutral}</div>
       <div>イマイチ… {props.bad}</div>
-      <div>合計 {props.calcTotal()}</div>
-      <div>いいね率 {Math.round(props.calcAverage() * 100)}%</div>
+      <div>合計 {props.total}</div>
+      <div>いいね率 {props.average}%</div>
     </div>
   );
 };
@@ -44,8 +44,8 @@ const Unicafe = () => {
         good={good}
         neutral={neutral}
         bad={bad}
-        calcTotal={calcTotal}
-        calcAverage={calcAverage}
+        total={calcTotal()}
+        average={Math.round(calcAverage() * 100)}
       />
     </div>
   );
