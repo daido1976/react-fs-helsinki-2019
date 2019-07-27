@@ -12,6 +12,14 @@ const Unicafe = () => {
   const setToGood = value => setGood(value);
   const setToNeutral = value => setNeutral(value);
   const setToBad = value => setBad(value);
+  const calcTotal = () => good + neutral + bad;
+  const calcAverage = () => {
+    if (calcTotal()) {
+      return good / calcTotal();
+    } else {
+      return 0;
+    }
+  };
 
   return (
     <div>
@@ -23,6 +31,8 @@ const Unicafe = () => {
       <div>いいね！ {good}</div>
       <div>ふつう {neutral}</div>
       <div>イマイチ… {bad}</div>
+      <div>合計 {calcTotal()}</div>
+      <div>いいね率 {Math.round(calcAverage() * 100)}%</div>
     </div>
   );
 };
