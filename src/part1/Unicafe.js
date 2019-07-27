@@ -4,16 +4,25 @@ import React, { useState } from "react";
 const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>;
 
 const Statistics = ({ good, neutral, bad, total, average }) => {
-  return (
-    <div>
-      <h2>結果</h2>
-      <div>いいね！ {good}</div>
-      <div>ふつう {neutral}</div>
-      <div>イマイチ… {bad}</div>
-      <div>合計 {total}</div>
-      <div>いいね率 {average}%</div>
-    </div>
-  );
+  if (total) {
+    return (
+      <div>
+        <h2>結果</h2>
+        <div>いいね！ {good}</div>
+        <div>ふつう {neutral}</div>
+        <div>イマイチ… {bad}</div>
+        <div>合計 {total}</div>
+        <div>いいね率 {average}%</div>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <h2>結果</h2>
+        <div>フィードバックはまだありません</div>
+      </div>
+    );
+  }
 };
 
 const Unicafe = () => {
