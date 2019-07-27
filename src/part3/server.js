@@ -18,7 +18,7 @@ app.get("/notes/:id", (req, res) => {
 });
 
 // https://stackoverflow.com/questions/35408729/express-js-prevent-get-favicon-ico
-app.get("/favicon.ico", (req, res) => res.status(204));
+app.get("/favicon.ico", (_req, res) => res.status(204));
 
 // post methods
 const generateId = () => {
