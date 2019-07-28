@@ -17,6 +17,24 @@ const Filter = ({ filter, handleFilter }) => {
   );
 };
 
+const PersonForm = ({ addInfo, name, number, handleName, handleNumber }) => {
+  return (
+    <React.Fragment>
+      <form onSubmit={addInfo}>
+        <div>
+          name: <input value={name} onChange={handleName} />
+        </div>
+        <div>
+          number: <input value={number} onChange={handleNumber} />
+        </div>
+        <div>
+          <button type="submit">add</button>
+        </div>
+      </form>
+    </React.Fragment>
+  );
+};
+
 const Phonebook = () => {
   const [persons, setPersons] = useState([
     { name: "Arto Hellas", number: "040-123456" },
@@ -88,17 +106,13 @@ const Phonebook = () => {
       <h2>Phonebook</h2>
       <Filter filter={newFilter} handleFilter={handleFilterChange} />
       <h2>Add a new person</h2>
-      <form onSubmit={addInfo}>
-        <div>
-          name: <input value={newName} onChange={handleNameChange} />
-        </div>
-        <div>
-          number: <input value={newNumber} onChange={handleNumberChange} />
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+      <PersonForm
+        addInfo={addInfo}
+        name={newName}
+        number={newNumber}
+        handleName={handleNameChange}
+        handleNumber={handleNumberChange}
+      />
       <h2>Numbers</h2>
       <ul>{rows()}</ul>
     </div>
