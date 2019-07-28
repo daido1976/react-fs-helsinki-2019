@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-const Row = props => {
+const Row = ({ person }) => {
   return (
     <li>
-      {props.person.name} {props.person.number}
+      {person.name} {person.number}
     </li>
   );
 };
