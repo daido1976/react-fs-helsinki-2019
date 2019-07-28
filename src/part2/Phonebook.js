@@ -17,8 +17,19 @@ const Phonebook = () => {
     setNewName(event.target.value);
   };
 
+  const duplicateName = () => {
+    return persons.some(person => newName === person.name);
+  };
+
   const addName = event => {
     event.preventDefault();
+
+    if (duplicateName()) {
+      alert(`${newName} is already added to phonebook`);
+      setNewName("");
+      return null;
+    }
+
     const personObject = {
       name: newName
     };
