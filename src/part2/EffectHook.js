@@ -4,13 +4,15 @@ import axios from "axios";
 const EffectHook = () => {
   const [notes, setNotes] = useState([]);
 
-  useEffect(() => {
+  const hook = () => {
     console.log("effect");
     axios.get("http://localhost:3001/notes").then(response => {
       console.log("promise fulfilled");
       setNotes(response.data);
     });
-  }, []);
+  };
+
+  useEffect(hook, []);
   console.log("render", notes.length, "notes");
 
   return "test";
