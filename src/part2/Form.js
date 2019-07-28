@@ -5,8 +5,13 @@ import Note from "./Note";
 const Form = props => {
   const [notes, setNotes] = useState(props.notes);
   const [newNote, setNewNote] = useState("a new note...");
+  const [showAll, setShowAll] = useState(true);
 
-  const rows = () => notes.map(note => <Note key={note.id} note={note} />);
+  const noteToShow = showAll
+    ? notes
+    : notes.filter(note => note.important === true);
+
+  const rows = () => noteToShow.map(note => <Note key={note.id} note={note} />);
 
   const addNote = event => {
     event.preventDefault();
@@ -29,6 +34,11 @@ const Form = props => {
   return (
     <div>
       <h1>Notes</h1>
+      <div>
+        <button onClick={() => setShowAll(!showAll)}>
+          show {showAll ? "important" : "all"}
+        </button>
+      </div>
       <ul>{rows()}</ul>
       <form onSubmit={addNote}>
         <input value={newNote} onChange={handleNoteChange} />
