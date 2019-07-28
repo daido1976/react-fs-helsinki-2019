@@ -1,11 +1,21 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
 
-const Row = ({ person }) => {
+const Person = ({ person }) => {
   return (
     <li>
       {person.name} {person.number}
     </li>
+  );
+};
+
+const Persons = ({ persons }) => {
+  return (
+    <ul>
+      {persons.map((person, index) => (
+        <Person key={index} person={person} />
+      ))}
+    </ul>
   );
 };
 
@@ -47,12 +57,6 @@ const Phonebook = () => {
   const [newNumber, setNewNumber] = useState("");
   const [newFilter, setNewFilter] = useState("");
   const [showAll, setShowAll] = useState(true);
-
-  const rows = () => {
-    return personToFilter.map((person, index) => (
-      <Row key={index} person={person} />
-    ));
-  };
 
   const personToFilter = showAll
     ? persons
@@ -114,7 +118,7 @@ const Phonebook = () => {
         handleNumber={handleNumberChange}
       />
       <h2>Numbers</h2>
-      <ul>{rows()}</ul>
+      <Persons persons={personToFilter} />
     </div>
   );
 };
