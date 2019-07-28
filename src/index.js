@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import ReactDOM from "react-dom";
-import EffectHook from "./part2/EffectHook";
+import Phonebook from "./part2/Phonebook";
 
 const App = () => {
   return (
     <div>
-      <EffectHook />
+      <Phonebook />
     </div>
   );
 };

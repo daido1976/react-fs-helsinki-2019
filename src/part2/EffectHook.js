@@ -13,7 +13,6 @@ const EffectHook = () => {
   };
 
   useEffect(hook, []);
-  console.log("render", notes.length, "notes");
 
   return "test";
 };
