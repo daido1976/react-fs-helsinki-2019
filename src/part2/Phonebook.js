@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from "react";
 
 const Row = ({ person }) => {
@@ -5,6 +6,14 @@ const Row = ({ person }) => {
     <li>
       {person.name} {person.number}
     </li>
+  );
+};
+
+const Filter = ({ filter, handleFilter }) => {
+  return (
+    <React.Fragment>
+      filter shown with <input value={filter} onChange={handleFilter} />
+    </React.Fragment>
   );
 };
 
@@ -77,8 +86,7 @@ const Phonebook = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      filter shown with{" "}
-      <input value={newFilter} onChange={handleFilterChange} />
+      <Filter filter={newFilter} handleFilter={handleFilterChange} />
       <h2>Add a new person</h2>
       <form onSubmit={addInfo}>
         <div>
