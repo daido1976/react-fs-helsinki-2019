@@ -29,7 +29,10 @@ const Phonebook = () => {
 
   const personToFilter = showAll
     ? persons
-    : persons.filter(person => person.name === newFilter);
+    : persons.filter(person => {
+        const pattern = RegExp(`.*${newFilter}.*`, "i");
+        return person.name.match(pattern);
+      });
 
   const handleFilterChange = event => {
     const value = event.target.value;
