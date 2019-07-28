@@ -3,14 +3,20 @@ import React, { useState } from "react";
 
 const Person = ({ person }) => {
   return (
-    <div>
+    <li>
       {person.name} {person.number}
-    </div>
+    </li>
   );
 };
 
 const Persons = ({ persons }) => {
-  return persons.map((person, index) => <Person key={index} person={person} />);
+  return (
+    <ul>
+      {persons.map((person, index) => (
+        <Person key={index} person={person} />
+      ))}
+    </ul>
+  );
 };
 
 const Filter = ({ filter, handleFilter }) => {
