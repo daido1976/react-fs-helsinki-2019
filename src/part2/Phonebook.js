@@ -10,13 +10,32 @@ const Row = ({ person }) => {
 
 const Phonebook = () => {
   const [persons, setPersons] = useState([
-    { name: "Arto Hellas", number: "111-1111-1111" }
+    { name: "Arto Hellas", number: "040-123456" },
+    { name: "Ada Lovelace", number: "39-44-5323523" },
+    { name: "Dan Abramov", number: "12-43-234345" },
+    { name: "Mary Poppendieck", number: "39-23-6423122" }
   ]);
+
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
+  const [newFilter, setNewFilter] = useState("");
+  const [showAll, setShowAll] = useState(true);
 
   const rows = () => {
-    return persons.map((person, index) => <Row key={index} person={person} />);
+    return personToFilter.map((person, index) => (
+      <Row key={index} person={person} />
+    ));
+  };
+
+  const personToFilter = showAll
+    ? persons
+    : persons.filter(person => person.name === newFilter);
+
+  const handleFilterChange = event => {
+    const value = event.target.value;
+    console.log(value);
+    value === "" ? setShowAll(true) : setShowAll(false);
+    setNewFilter(value);
   };
 
   const handleNameChange = event => {
@@ -55,6 +74,9 @@ const Phonebook = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      filter shown with{" "}
+      <input value={newFilter} onChange={handleFilterChange} />
+      <h2>Add a new person</h2>
       <form onSubmit={addInfo}>
         <div>
           name: <input value={newName} onChange={handleNameChange} />
