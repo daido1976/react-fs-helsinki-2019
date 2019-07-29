@@ -1,4 +1,4 @@
-const { ApolloServer, gql } = require("apollo-server");
+const { ApolloServer, UserInputError, gql } = require("apollo-server");
 const uuid = require("uuid/v1");
 
 let persons = [
@@ -69,6 +69,12 @@ const resolvers = {
   },
   Mutation: {
     addPerson: (root, args) => {
+      if (persons.find(p => p.name === args.name)) {
+        throw new UserInputError("Name must be unique", {
+          invalidArgs: args.name
+        });
+      }
+
       const person = { ...args, id: uuid() };
       persons = persons.concat(person);
       return person;
