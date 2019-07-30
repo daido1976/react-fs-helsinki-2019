@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Query, ApolloConsumer } from "react-apollo";
+import { Query, Mutation, ApolloConsumer } from "react-apollo";
 import ApolloClient, { gql } from "apollo-boost";
+import { PersonForm } from "./PersonForm";
 
 export const client = new ApolloClient({
   uri: "http://localhost:4000/graphql"
@@ -19,6 +20,25 @@ const ALL_PERSONS = gql`
 const FIND_PERSON = gql`
   query findPersonByName($nameToSearch: String!) {
     findPerson(name: $nameToSearch) {
+      name
+      phone
+      id
+      address {
+        street
+        city
+      }
+    }
+  }
+`;
+
+const CREATE_PERSON = gql`
+  mutation createPerson(
+    $name: String!
+    $street: String!
+    $city: String!
+    $phone: String
+  ) {
+    addPerson(name: $name, street: $street, city: $city, phone: $phone) {
       name
       phone
       id
@@ -73,12 +93,18 @@ const Persons = ({ result }) => {
 
 export const GraphqlClient = () => {
   return (
-    <ApolloConsumer>
-      {client => (
-        <Query query={ALL_PERSONS}>
-          {result => <Persons result={result} client={client} />}
-        </Query>
-      )}
-    </ApolloConsumer>
+    <div>
+      <ApolloConsumer>
+        {client => (
+          <Query query={ALL_PERSONS}>
+            {result => <Persons result={result} client={client} />}
+          </Query>
+        )}
+      </ApolloConsumer>
+      <h2>create new</h2>
+      <Mutation mutation={CREATE_PERSON}>
+        {addPerson => <PersonForm addPerson={addPerson} />}
+      </Mutation>
+    </div>
   );
 };
