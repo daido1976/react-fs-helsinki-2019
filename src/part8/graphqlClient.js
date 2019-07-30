@@ -92,6 +92,14 @@ const Persons = ({ result }) => {
 };
 
 export const GraphqlClient = () => {
+  const [errorMessage, setErrorMessage] = useState(null);
+  const handleError = error => {
+    setErrorMessage(error.graphQLErrors[0].message);
+    setTimeout(() => {
+      setErrorMessage(null);
+    }, 5000);
+  };
+
   return (
     <div>
       <ApolloConsumer>
@@ -102,9 +110,11 @@ export const GraphqlClient = () => {
         )}
       </ApolloConsumer>
       <h2>create new</h2>
+      {errorMessage && <div style={{ color: "red" }}>{errorMessage}</div>}
       <Mutation
         mutation={CREATE_PERSON}
         refetchQueries={[{ query: ALL_PERSONS }]}
+        onError={handleError}
       >
         {addPerson => <PersonForm addPerson={addPerson} />}
       </Mutation>
