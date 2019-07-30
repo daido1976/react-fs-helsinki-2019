@@ -1,13 +1,19 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import ReactDOM from "react-dom";
-import Phonebook from "./part2/Phonebook";
+import { ApolloProvider } from "react-apollo";
+import { ApolloProvider as ApolloHooksProvider } from "react-apollo-hooks";
+import { GraphqlClient, client } from "./part8/graphqlClient";
 
 const App = () => {
   return (
-    <div>
-      <Phonebook />
-    </div>
+    <ApolloProvider client={client}>
+      <ApolloHooksProvider client={client}>
+        <div>
+          <GraphqlClient />
+        </div>
+      </ApolloHooksProvider>
+    </ApolloProvider>
   );
 };
 
