@@ -16,15 +16,27 @@ const ALL_PERSONS = gql`
   }
 `;
 
+const Persons = ({ result }) => {
+  if (result.loading) {
+    return <div>loading...</div>;
+  }
+
+  const persons = result.data.allPersons;
+
+  return (
+    <div>
+      <h2>Persons</h2>
+      {persons.map(p => (
+        <div key={p.name}>
+          {p.name} {p.phone}
+        </div>
+      ))}
+    </div>
+  );
+};
+
 export const GraphqlClient = () => {
   return (
-    <Query query={ALL_PERSONS}>
-      {result => {
-        if (result.loading) {
-          return <div>loading...</div>;
-        }
-        return <div>{result.data.allPersons.map(p => p.name).join(", ")}</div>;
-      }}
-    </Query>
+    <Query query={ALL_PERSONS}>{result => <Persons result={result} />}</Query>
   );
 };
