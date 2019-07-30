@@ -96,13 +96,16 @@ export const GraphqlClient = () => {
     <div>
       <ApolloConsumer>
         {client => (
-          <Query query={ALL_PERSONS} pollInterval={2000}>
+          <Query query={ALL_PERSONS}>
             {result => <Persons result={result} client={client} />}
           </Query>
         )}
       </ApolloConsumer>
       <h2>create new</h2>
-      <Mutation mutation={CREATE_PERSON}>
+      <Mutation
+        mutation={CREATE_PERSON}
+        refetchQueries={[{ query: ALL_PERSONS }]}
+      >
         {addPerson => <PersonForm addPerson={addPerson} />}
       </Mutation>
     </div>
