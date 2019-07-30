@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Query, Mutation, ApolloConsumer } from "react-apollo";
 import ApolloClient, { gql } from "apollo-boost";
+import { useApolloClient } from "react-apollo-hooks";
 import { PersonForm } from "./PersonForm";
 import { PhoneForm } from "./PhoneForm";
 
@@ -67,6 +68,7 @@ const EDIT_NUMBER = gql`
 
 const Persons = ({ result }) => {
   const [person, setPerson] = useState(null);
+  const client = useApolloClient();
 
   if (result.loading) {
     return <div>loading...</div>;
@@ -117,13 +119,7 @@ export const GraphqlClient = () => {
 
   return (
     <div>
-      <ApolloConsumer>
-        {client => (
-          <Query query={ALL_PERSONS}>
-            {result => <Persons result={result} client={client} />}
-          </Query>
-        )}
-      </ApolloConsumer>
+      <Query query={ALL_PERSONS}>{result => <Persons result={result} />}</Query>
       <h2>create new</h2>
       {errorMessage && <div style={{ color: "red" }}>{errorMessage}</div>}
       <Mutation
