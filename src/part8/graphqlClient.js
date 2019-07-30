@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Query, Mutation, ApolloConsumer } from "react-apollo";
 import ApolloClient, { gql } from "apollo-boost";
-import { useApolloClient, useQuery } from "react-apollo-hooks";
+import { useApolloClient, useQuery, useMutation } from "react-apollo-hooks";
 import { PersonForm } from "./PersonForm";
 import { PhoneForm } from "./PhoneForm";
 
@@ -118,22 +118,21 @@ export const GraphqlClient = () => {
     }, 5000);
   };
 
+  const [addPerson] = useMutation(CREATE_PERSON, {
+    onError: handleError,
+    refetchQueries: [{ query: ALL_PERSONS }]
+  });
+
+  const [editNumber] = useMutation(EDIT_NUMBER);
+
   return (
     <div>
       <Persons result={persons} />
       <h2>create new</h2>
       {errorMessage && <div style={{ color: "red" }}>{errorMessage}</div>}
-      <Mutation
-        mutation={CREATE_PERSON}
-        refetchQueries={[{ query: ALL_PERSONS }]}
-        onError={handleError}
-      >
-        {addPerson => <PersonForm addPerson={addPerson} />}
-      </Mutation>
+      <PersonForm addPerson={addPerson} />
       <h2>change number</h2>
-      <Mutation mutation={EDIT_NUMBER}>
-        {editNumber => <PhoneForm editNumber={editNumber} />}
-      </Mutation>
+      <PhoneForm editNumber={editNumber} />
     </div>
   );
 };
