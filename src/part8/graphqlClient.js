@@ -1,7 +1,7 @@
 import React from "react";
 import ApolloClient, { gql } from "apollo-boost";
 
-const client = new ApolloClient({
+export const client = new ApolloClient({
   uri: "http://localhost:4000/graphql"
 });
 
@@ -23,8 +23,6 @@ client.query({ query }).then(response => {
   console.log(response.data);
 });
 
-const GraphqlClient = () => {
+export const GraphqlClient = () => {
   return <div>test</div>;
 };
-
-export default GraphqlClient;
