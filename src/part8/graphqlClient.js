@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Query, Mutation, ApolloConsumer } from "react-apollo";
 import ApolloClient, { gql } from "apollo-boost";
 import { PersonForm } from "./PersonForm";
+import { PhoneForm } from "./PhoneForm";
 
 export const client = new ApolloClient({
   uri: "http://localhost:4000/graphql"
@@ -46,6 +47,20 @@ const CREATE_PERSON = gql`
         street
         city
       }
+    }
+  }
+`;
+
+const EDIT_NUMBER = gql`
+  mutation editNumber($name: String!, $phone: String!) {
+    editNumber(name: $name, phone: $phone) {
+      name
+      phone
+      address {
+        street
+        city
+      }
+      id
     }
   }
 `;
@@ -117,6 +132,10 @@ export const GraphqlClient = () => {
         onError={handleError}
       >
         {addPerson => <PersonForm addPerson={addPerson} />}
+      </Mutation>
+      <h2>change number</h2>
+      <Mutation mutation={EDIT_NUMBER}>
+        {editNumber => <PhoneForm editNumber={editNumber} />}
       </Mutation>
     </div>
   );
