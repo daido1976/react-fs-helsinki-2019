@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import ReactDOM from "react-dom";
-import { Phonebook } from "./Phonebook";
+import { Notes } from "./part2/Notes";
 
 const App = () => {
   return (
     <div>
-      <Phonebook />
+      <Notes />
     </div>
   );
 };
