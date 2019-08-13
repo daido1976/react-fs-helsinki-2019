@@ -1,50 +1,8 @@
+/* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
-const Person = ({ person }) => {
-  return (
-    <li>
-      {person.name} {person.number}
-    </li>
-  );
-};
-
-const Persons = ({ persons }) => {
-  return (
-    <ul>
-      {persons.map((person, index) => (
-        <Person key={index} person={person} />
-      ))}
-    </ul>
-  );
-};
-
-const Filter = ({ filter, handleFilter }) => {
-  return (
-    <React.Fragment>
-      filter shown with <input value={filter} onChange={handleFilter} />
-    </React.Fragment>
-  );
-};
-
-const PersonForm = ({ addInfo, name, number, handleName, handleNumber }) => {
-  return (
-    <React.Fragment>
-      <form onSubmit={addInfo}>
-        <div>
-          name: <input value={name} onChange={handleName} />
-        </div>
-        <div>
-          number: <input value={number} onChange={handleNumber} />
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
-    </React.Fragment>
-  );
-};
+import { Persons, PersonForm, Filter } from "./components";
 
 export const Phonebook = () => {
   const [persons, setPersons] = useState([]);
@@ -54,7 +12,7 @@ export const Phonebook = () => {
   const [showAll, setShowAll] = useState(true);
 
   useEffect(() => {
-    // $ npx json-server --port 3001 --watch db.json
+    // $ npx json-server --port 3001 --watch src/Phonebook/db.json
     axios.get("http://localhost:3001/persons").then(response => {
       setPersons(response.data);
     });
