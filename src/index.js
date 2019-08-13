@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import ReactDOM from "react-dom";
-import { GraphqlApp } from "./part8/graphql";
+import { Phonebook } from "./Phonebook";
 
 const App = () => {
   return (
     <div>
-      <GraphqlApp />
+      <Phonebook />
     </div>
   );
 };

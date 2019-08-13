@@ -46,7 +46,7 @@ const PersonForm = ({ addInfo, name, number, handleName, handleNumber }) => {
   );
 };
 
-const Phonebook = () => {
+export const Phonebook = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
@@ -54,6 +54,7 @@ const Phonebook = () => {
   const [showAll, setShowAll] = useState(true);
 
   useEffect(() => {
+    // $ npx json-server --port 3001 --watch db.json
     axios.get("http://localhost:3001/persons").then(response => {
       setPersons(response.data);
     });
@@ -123,5 +124,3 @@ const Phonebook = () => {
     </div>
   );
 };
-
-export default Phonebook;
