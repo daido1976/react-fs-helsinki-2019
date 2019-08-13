@@ -1,5 +1,5 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from "react";
-import { Query, Mutation, ApolloConsumer } from "react-apollo";
 import ApolloClient, { gql } from "apollo-boost";
 import { useApolloClient, useQuery, useMutation } from "react-apollo-hooks";
 import { PersonForm } from "./PersonForm";

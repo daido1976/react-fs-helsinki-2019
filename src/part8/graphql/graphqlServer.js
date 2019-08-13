@@ -1,3 +1,4 @@
+// $ node src/part8/graphql/graphqlServer.js
 const { ApolloServer, UserInputError, gql } = require("apollo-server");
 const uuid = require("uuid/v1");
 
@@ -81,7 +82,7 @@ const resolvers = {
     }
   },
   Mutation: {
-    addPerson: (root, args) => {
+    addPerson: (_root, args) => {
       if (persons.find(p => p.name === args.name)) {
         throw new UserInputError("Name must be unique", {
           invalidArgs: args.name
@@ -92,7 +93,7 @@ const resolvers = {
       persons = persons.concat(person);
       return person;
     },
-    editNumber: (root, args) => {
+    editNumber: (_root, args) => {
       const person = persons.find(p => p.name === args.name);
       if (!person) {
         return null;
@@ -111,5 +112,6 @@ const server = new ApolloServer({
 });
 
 server.listen().then(({ url }) => {
+  // eslint-disable-next-line no-console
   console.log(`Server ready at ${url}`);
 });
