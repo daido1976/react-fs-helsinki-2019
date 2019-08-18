@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import ReactDOM from "react-dom";
-import { Router } from "./part7/vanillaRouter";
+import { ReactRouter } from "./part7/ReactRouter";
 
 const App = () => {
   return (
     <div>
-      <Router />
+      <ReactRouter />
     </div>
   );
 };
