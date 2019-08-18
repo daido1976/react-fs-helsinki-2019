@@ -35,12 +35,10 @@ describe("<Togglable />", () => {
   });
 
   test("toggled content can be closed", () => {
-    const button = component.container.querySelector("button");
+    const button = component.getByText("show...");
     fireEvent.click(button);
 
-    const closeButton = component.container.querySelector(
-      "button:nth-child(2)"
-    );
+    const closeButton = component.getByText("cancel");
     fireEvent.click(closeButton);
 
     const div = component.container.querySelector(".togglableContent");
