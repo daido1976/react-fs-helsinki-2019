@@ -18,4 +18,10 @@ describe("<Togglable />", () => {
     const div = component.container.querySelector(".testDiv");
     expect(div).toBeTruthy();
   });
+
+  test("at start the children are not displayed", () => {
+    const div = component.container.querySelector(".togglableContent");
+
+    expect(div).toHaveStyle("display: none");
+  });
 });
