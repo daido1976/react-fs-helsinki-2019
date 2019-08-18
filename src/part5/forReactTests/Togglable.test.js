@@ -16,6 +16,7 @@ describe("<Togglable />", () => {
 
   test("renders its children", () => {
     const div = component.container.querySelector(".testDiv");
+
     expect(div).toBeTruthy();
   });
 
@@ -23,5 +24,13 @@ describe("<Togglable />", () => {
     const div = component.container.querySelector(".togglableContent");
 
     expect(div).toHaveStyle("display: none");
+  });
+
+  test("after clicking the button, children are displayed", () => {
+    const button = component.getByText("show...");
+    fireEvent.click(button);
+
+    const div = component.container.querySelector(".togglableContent");
+    expect(div).not.toHaveStyle("display: none");
   });
 });
